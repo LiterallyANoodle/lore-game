@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bjoqdejx2b6dg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_toyce"]
+shading_mode = 0
+albedo_color = Color(0, 0.8527348, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_yrjyd"]
+material = SubResource("StandardMaterial3D_toyce")
+radius = 0.1
+height = 0.2
+
+[node name="Hitmarker" type="MeshInstance3D" unique_id=1255347577]
+mesh = SubResource("SphereMesh_yrjyd")

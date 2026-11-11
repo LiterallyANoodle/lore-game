@@ -38,7 +38,7 @@ sprite_frames = SubResource("SpriteFrames_yrjyd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97337246, 0)
 shape = SubResource("CapsuleShape3D_7p1mj")
 
-[node name="Drop Shadow" type="MeshInstance3D" parent="Collider" unique_id=1131275804]
+[node name="DropShadow" type="MeshInstance3D" parent="Collider" unique_id=1131275804]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.89, 0)
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_md0e3")
