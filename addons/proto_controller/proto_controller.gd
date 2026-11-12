@@ -53,11 +53,14 @@ var freeflying : bool = false
 @onready var head: Node3D = $Head
 @onready var collider: CollisionShape3D = $Collider
 @onready var sprite: AnimatedSprite3D = $Sprite
+@onready var gun_sprite: AnimatedSprite3D = $Head/Offset/Gun
 
 func _ready() -> void:
 	check_input_mappings()
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
+	
+	SignalBus.WEAPON_FIRED.connect(play_weapon_animation)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse capturing
@@ -125,7 +128,7 @@ func _physics_process(delta: float) -> void:
 ## Rotate us to look around.
 ## Base of controller rotates around y (left/right). Head rotates around x (up/down).
 ## Modifies look_rotation based on rot_input, then resets basis and rotates by look_rotation.
-func rotate_look(rot_input : Vector2):
+func rotate_look(rot_input : Vector2) -> void:
 	look_rotation.x -= rot_input.y * look_speed
 	look_rotation.x = clamp(look_rotation.x, deg_to_rad(-85), deg_to_rad(85))
 	look_rotation.y -= rot_input.x * look_speed
@@ -135,29 +138,29 @@ func rotate_look(rot_input : Vector2):
 	head.rotate_x(look_rotation.x)
 
 
-func enable_freefly():
+func enable_freefly() -> void:
 	collider.disabled = true
 	freeflying = true
 	velocity = Vector3.ZERO
 
-func disable_freefly():
+func disable_freefly() -> void:
 	collider.disabled = false
 	freeflying = false
 
 
-func capture_mouse():
+func capture_mouse() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	mouse_captured = true
 
 
-func release_mouse():
+func release_mouse() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	mouse_captured = false
 
 
 ## Checks if some Input Actions haven't been created.
 ## Disables functionality accordingly.
-func check_input_mappings():
+func check_input_mappings() -> void:
 	if can_move and not InputMap.has_action(input_left):
 		push_error("Movement disabled. No InputAction found for input_left: " + input_left)
 		can_move = false
@@ -179,3 +182,9 @@ func check_input_mappings():
 	if can_freefly and not InputMap.has_action(input_freefly):
 		push_error("Freefly disabled. No InputAction found for input_freefly: " + input_freefly)
 		can_freefly = false
+
+func play_weapon_animation(weapon: AimController.Weapon) -> void:
+	if AimController.Weapon.GUN == weapon:
+		gun_sprite.stop()
+		gun_sprite.play("fire")
+		

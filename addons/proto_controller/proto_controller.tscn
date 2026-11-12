@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://crjbuv0uyvl2n" path="res://addons/proto_controller/proto_controller.gd" id="1_ucva2"]
 [ext_resource type="PackedScene" uid="uid://b2fjuf5oyqq33" path="res://scenes/aim_controller.tscn" id="2_5hfox"]
 [ext_resource type="SpriteFrames" uid="uid://dtcagrcc66cf5" path="res://resources/lore_walking_forward.tres" id="2_wr06p"]
+[ext_resource type="Texture2D" uid="uid://cu6euhndqg4ol" path="res://assets/gun_shoot.png" id="3_6dqce"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
@@ -23,6 +24,43 @@ albedo_color = Color(0, 0, 0, 0.5647059)
 [sub_resource type="CylinderMesh" id="CylinderMesh_yrjyd"]
 material = SubResource("StandardMaterial3D_wr06p")
 height = 0.001
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h60nn"]
+atlas = ExtResource("3_6dqce")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujot4"]
+atlas = ExtResource("3_6dqce")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rk7u"]
+atlas = ExtResource("3_6dqce")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_toyce"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_h60nn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujot4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rk7u")
+}],
+"loop": 0,
+"name": &"fire",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rk7u")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="ProtoController" type="CharacterBody3D" unique_id=1431296994]
 script = ExtResource("1_ucva2")
@@ -55,6 +93,15 @@ fov = 100.0
 [node name="AimController" parent="Head/Offset/Camera3D" unique_id=41645329 instance=ExtResource("2_5hfox")]
 enable_hitmarkers = true
 
+[node name="Gun" type="AnimatedSprite3D" parent="Head/Offset" unique_id=920002723]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -1.7)
+offset = Vector2(1.5, 21)
+no_depth_test = true
+render_priority = 1
+sprite_frames = SubResource("SpriteFrames_toyce")
+animation = &"fire"
+autoplay = "idle"
+
 [node name="Sprite" type="AnimatedSprite3D" parent="." unique_id=1730889921]
 offset = Vector2(47.28, 169.815)
 pixel_size = 0.005
@@ -65,4 +112,4 @@ render_priority = 1
 sprite_frames = ExtResource("2_wr06p")
 animation = &"walking_forward"
 autoplay = "walking_forward"
-frame_progress = 0.516804
+frame_progress = 0.5224657

@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://b7tv448hwshm1"]
 
 [ext_resource type="Texture2D" uid="uid://bgu1smtwfdbod" path="res://assets/zecora.png" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://blv3fjvswp5yp" path="res://scenes/enemy.gd" id="1_md0e3"]
+[ext_resource type="Script" uid="uid://dhop46nnt3orm" path="res://scenes/hurtbox.gd" id="3_4ra3w"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yrjyd"]
 animations = [{
@@ -26,6 +28,7 @@ material = SubResource("StandardMaterial3D_toyce")
 height = 0.001
 
 [node name="Enemy" type="CharacterBody3D" unique_id=885445904]
+script = ExtResource("1_md0e3")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=880208614]
 offset = Vector2(0, 320)
@@ -34,11 +37,13 @@ billboard = 2
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_yrjyd")
 
-[node name="Collider" type="CollisionShape3D" parent="." unique_id=470093773]
+[node name="Hurtbox" type="CollisionShape3D" parent="." unique_id=1250011464]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97337246, 0)
 shape = SubResource("CapsuleShape3D_7p1mj")
+script = ExtResource("3_4ra3w")
+metadata/_custom_type_script = "uid://dhop46nnt3orm"
 
-[node name="DropShadow" type="MeshInstance3D" parent="Collider" unique_id=1131275804]
+[node name="DropShadow" type="MeshInstance3D" parent="Hurtbox" unique_id=1131275804]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.89, 0)
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_md0e3")

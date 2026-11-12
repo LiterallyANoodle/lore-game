@@ -17,6 +17,10 @@ boot_splash/bg_color=Color(1, 1, 1, 1)
 boot_splash/image="uid://bi7rka2766i3x"
 config/icon="res://icon.svg"
 
+[autoload]
+
+SignalBus="*uid://c5ari6ghp3yap"
+
 [debug]
 
 gdscript/warnings/untyped_declaration=2
@@ -66,4 +70,5 @@ Backward={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"

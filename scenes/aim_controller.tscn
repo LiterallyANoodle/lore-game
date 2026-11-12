@@ -4,6 +4,8 @@
 
 [node name="AimController" type="Node3D" unique_id=41645329]
 script = ExtResource("1_aavwb")
+range = null
+enable_hitmarkers = null
 
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=917740356]
 target_position = Vector3(0, 0, -500)
