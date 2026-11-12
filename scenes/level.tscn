@@ -15,6 +15,10 @@ background_mode = 2
 sky = SubResource("Sky_w7c3h")
 glow_enabled = true
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_yrjyd"]
+vertices = PackedVector3Array(-24.5, 0.5, -20.420433, -16.5, 0.5, -20.420433, -16.5, 0.5, -21.920433, -14.75, 0.5, -22.170433, -14.75, 0.5, -30.170433, -24.5, 0.5, -30.170433, 13.5, 0.5, -21.920433, 15, 0.5, -22.170433, 15, 0.5, -30.170433, -13.25, 0.5, -21.920433, -13.5, 0.5, -19.170433, -4.25, 0.5, -10.170433, 4.5, 0.5, -10.170433, 13.75, 0.5, -18.920433, 16.5, 0.5, -22.170433, 16.75, 0.5, -20.670433, 24.5, 0.5, -20.670433, 24.5, 0.5, -30.170433, -15.5, 5.5, -21.170433, -15.5, 5.5, -20.170433, -14.5, 5.5, -20.170433, -14.5, 5.5, -21.170433, 14.5, 5.5, -21.170433, 14.5, 5.5, -20.170433, 15.5, 5.5, -20.170433, 15.5, 5.5, -21.170433, 16.75, 0.5, -19.420433, 16.5, 0.5, 7.829567, 16.75, 0.5, 9.329567, 24.5, 0.5, 9.329567, 16.25, 0.5, -18.920433, 4.5, 0.5, -1.170433, 13.75, 0.5, 7.829567, -24.5, 0.5, 9.329567, -16.5, 0.5, 9.329567, -16.25, 0.5, 7.829567, -16.25, 0.5, -18.920433, -13.5, 0.5, 7.829567, -4.25, 0.5, -0.92043304, -3.5, 5.5, -9.170433, -3.5, 5.5, -2.170433, 3.5, 5.5, -2.170433, 3.5, 5.5, -9.170433, -13.75, 0.5, 11.079567, -15, 0.5, 11.079567, -15, 0.5, 18.829567, 15, 0.5, 18.829567, 15, 0.5, 11.079567, 13.5, 0.5, 10.829567, -13.25, 0.5, 10.579567, -15.5, 5.5, 8.829567, -15.5, 5.5, 9.829567, -14.5, 5.5, 9.829567, -14.5, 5.5, 8.829567, 14.5, 5.5, 8.829567, 14.5, 5.5, 9.829567, 15.5, 5.5, 9.829567, 15.5, 5.5, 8.829567, -16.5, 0.5, 10.829567, -24.5, 0.5, 18.829567, 16.75, 0.5, 10.579567, 16.25, 0.5, 11.079567, 24.5, 0.5, 18.829567)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 2), PackedInt32Array(0, 5, 2), PackedInt32Array(2, 5, 4), PackedInt32Array(8, 7, 6), PackedInt32Array(9, 3, 4), PackedInt32Array(11, 10, 9), PackedInt32Array(6, 13, 12), PackedInt32Array(11, 9, 12), PackedInt32Array(12, 9, 4), PackedInt32Array(12, 4, 6), PackedInt32Array(6, 4, 8), PackedInt32Array(16, 15, 14), PackedInt32Array(14, 7, 8), PackedInt32Array(8, 17, 14), PackedInt32Array(14, 17, 16), PackedInt32Array(21, 20, 18), PackedInt32Array(18, 20, 19), PackedInt32Array(25, 24, 22), PackedInt32Array(22, 24, 23), PackedInt32Array(26, 15, 16), PackedInt32Array(29, 28, 27), PackedInt32Array(30, 26, 16), PackedInt32Array(12, 13, 30), PackedInt32Array(27, 32, 31), PackedInt32Array(12, 30, 31), PackedInt32Array(31, 30, 16), PackedInt32Array(31, 16, 27), PackedInt32Array(27, 16, 29), PackedInt32Array(35, 34, 33), PackedInt32Array(0, 1, 36), PackedInt32Array(38, 37, 35), PackedInt32Array(36, 10, 11), PackedInt32Array(38, 35, 11), PackedInt32Array(11, 35, 33), PackedInt32Array(11, 33, 36), PackedInt32Array(36, 33, 0), PackedInt32Array(42, 41, 39), PackedInt32Array(39, 41, 40), PackedInt32Array(45, 44, 43), PackedInt32Array(48, 47, 46), PackedInt32Array(49, 45, 43), PackedInt32Array(49, 37, 38), PackedInt32Array(31, 32, 48), PackedInt32Array(38, 31, 49), PackedInt32Array(49, 31, 45), PackedInt32Array(45, 31, 48), PackedInt32Array(45, 48, 46), PackedInt32Array(53, 52, 50), PackedInt32Array(50, 52, 51), PackedInt32Array(57, 56, 54), PackedInt32Array(54, 56, 55), PackedInt32Array(58, 44, 45), PackedInt32Array(33, 34, 58), PackedInt32Array(45, 59, 58), PackedInt32Array(58, 59, 33), PackedInt32Array(60, 28, 29), PackedInt32Array(46, 47, 61), PackedInt32Array(60, 29, 61), PackedInt32Array(61, 29, 62), PackedInt32Array(61, 62, 46)]
+
 [node name="Level" type="Node3D" unique_id=137506592]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=198727084]
@@ -24,28 +28,32 @@ environment = SubResource("Environment_w8frs")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Floor" type="CSGBox3D" parent="." unique_id=2082346278]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1385869004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.670434)
+navigation_mesh = SubResource("NavigationMesh_yrjyd")
+
+[node name="Floor" type="CSGBox3D" parent="NavigationRegion3D" unique_id=2082346278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -5.670434)
 use_collision = true
 size = Vector3(50, 1, 50)
 
-[node name="Center" type="CSGBox3D" parent="Floor" unique_id=371906182]
+[node name="Center" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=371906182]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 size = Vector3(8, 5, 8)
 
-[node name="Pillar 1" type="CSGBox3D" parent="Floor" unique_id=598768555]
+[node name="Pillar 1" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=598768555]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 3, 15)
 size = Vector3(2, 5, 2)
 
-[node name="Pillar 2" type="CSGBox3D" parent="Floor" unique_id=2014572097]
+[node name="Pillar 2" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=2014572097]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 3, 15)
 size = Vector3(2, 5, 2)
 
-[node name="Pillar 3" type="CSGBox3D" parent="Floor" unique_id=1128838016]
+[node name="Pillar 3" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=1128838016]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 3, -15)
 size = Vector3(2, 5, 2)
 
-[node name="Pillar 4" type="CSGBox3D" parent="Floor" unique_id=1527501296]
+[node name="Pillar 4" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=1527501296]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 3, -15)
 size = Vector3(2, 5, 2)
 

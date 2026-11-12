@@ -34,6 +34,7 @@ script = ExtResource("1_md0e3")
 offset = Vector2(0, 320)
 pixel_size = 0.0035
 billboard = 2
+texture_filter = 1
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_yrjyd")
 
@@ -47,3 +48,5 @@ metadata/_custom_type_script = "uid://dhop46nnt3orm"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.89, 0)
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_md0e3")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=188090712]

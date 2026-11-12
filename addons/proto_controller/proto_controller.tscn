@@ -62,7 +62,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="ProtoController" type="CharacterBody3D" unique_id=1431296994]
+[node name="ProtoController" type="CharacterBody3D" unique_id=1431296994 groups=["Player"]]
 script = ExtResource("1_ucva2")
 
 [node name="Mesh" type="MeshInstance3D" parent="." unique_id=544419107]
@@ -96,7 +96,9 @@ enable_hitmarkers = true
 [node name="Gun" type="AnimatedSprite3D" parent="Head/Offset" unique_id=920002723]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -1.7)
 offset = Vector2(1.5, 21)
+billboard = 1
 no_depth_test = true
+texture_filter = 0
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_toyce")
 animation = &"fire"
@@ -108,6 +110,7 @@ pixel_size = 0.005
 billboard = 2
 double_sided = false
 no_depth_test = true
+texture_filter = 0
 render_priority = 1
 sprite_frames = ExtResource("2_wr06p")
 animation = &"walking_forward"

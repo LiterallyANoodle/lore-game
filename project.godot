@@ -32,6 +32,10 @@ gdscript/warnings/inferred_declaration=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[global_group]
+
+Player=""
+
 [input]
 
 Forward={
