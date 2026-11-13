@@ -1,3 +1,61 @@
 [gd_scene format=3 uid="uid://bc2rwety2eb5t"]
 
+[ext_resource type="Texture2D" uid="uid://hq6hmp4jmjma" path="res://assets/whack.png" id="1_b4bys"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5w3iq"]
+size = Vector3(1, 1.5, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii3lw"]
+atlas = ExtResource("1_b4bys")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51f4a"]
+atlas = ExtResource("1_b4bys")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkqyl"]
+atlas = ExtResource("1_b4bys")
+region = Rect2(1024, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b27li"]
+atlas = ExtResource("1_b4bys")
+region = Rect2(1536, 0, 512, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5w3iq"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_ii3lw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51f4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkqyl")
+}, {
+"duration": 2.5,
+"texture": SubResource("AtlasTexture_b27li")
+}],
+"loop": 0,
+"name": &"whack",
+"speed": 20.0
+}]
+
 [node name="PlayerMeleeController" type="Node3D" unique_id=936719754]
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1313981344]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1676812666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, -0.25)
+shape = SubResource("BoxShape3D_5w3iq")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Area3D/CollisionShape3D" unique_id=1383783310]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
+pixel_size = 0.005
+billboard = 1
+texture_filter = 0
+render_priority = 1
+sprite_frames = SubResource("SpriteFrames_5w3iq")
+animation = &"whack"
+frame = 3
+frame_progress = 1.0
