@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bc2rwety2eb5t"]
+
+[node name="PlayerMeleeController" type="Node3D" unique_id=936719754]

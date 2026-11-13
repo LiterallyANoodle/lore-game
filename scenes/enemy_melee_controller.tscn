@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://cqvtaydbt50vs"]
+
+[ext_resource type="Script" uid="uid://dv4p803ldxvgb" path="res://scenes/enemy_melee_controller.gd" id="1_r7ume"]
+[ext_resource type="Texture2D" uid="uid://dsfkj0qmk1k7k" path="res://assets/zebra_bite.png" id="2_7qad5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y41yd"]
+size = Vector3(1, 1.5, 0.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkbrj"]
+atlas = ExtResource("2_7qad5")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15d5d"]
+atlas = ExtResource("2_7qad5")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4n7y"]
+atlas = ExtResource("2_7qad5")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aki8m"]
+atlas = ExtResource("2_7qad5")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itv65"]
+atlas = ExtResource("2_7qad5")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5inwa"]
+atlas = ExtResource("2_7qad5")
+region = Rect2(1280, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k016q"]
+atlas = ExtResource("2_7qad5")
+region = Rect2(1536, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kil6l"]
+atlas = ExtResource("2_7qad5")
+region = Rect2(1792, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ji23b"]
+atlas = ExtResource("2_7qad5")
+region = Rect2(2048, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yrjyd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkbrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15d5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4n7y")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_aki8m")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_itv65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5inwa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k016q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kil6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ji23b")
+}],
+"loop": 0,
+"name": &"bite",
+"speed": 10.0
+}]
+
+[node name="EnemyMeleeController" type="Node3D" unique_id=1817430637]
+script = ExtResource("1_r7ume")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=978805724]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1132208661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, -0.25)
+shape = SubResource("BoxShape3D_y41yd")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Area3D/CollisionShape3D" unique_id=206311453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
+pixel_size = 0.005
+billboard = 1
+texture_filter = 0
+render_priority = 1
+sprite_frames = SubResource("SpriteFrames_yrjyd")
+animation = &"bite"
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="animation_finished" from="Area3D/CollisionShape3D/AnimatedSprite3D" to="." method="_on_animated_sprite_3d_animation_finished"]
+[connection signal="frame_changed" from="Area3D/CollisionShape3D/AnimatedSprite3D" to="." method="apply_attack"]

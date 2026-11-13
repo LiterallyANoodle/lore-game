@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bgu1smtwfdbod" path="res://assets/zecora.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://blv3fjvswp5yp" path="res://scenes/enemy.gd" id="1_md0e3"]
+[ext_resource type="PackedScene" uid="uid://cqvtaydbt50vs" path="res://scenes/enemy_melee_controller.tscn" id="2_5uy6h"]
 [ext_resource type="Script" uid="uid://dhop46nnt3orm" path="res://scenes/hurtbox.gd" id="3_4ra3w"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yrjyd"]
@@ -30,6 +31,9 @@ height = 0.001
 [node name="Enemy" type="CharacterBody3D" unique_id=885445904]
 script = ExtResource("1_md0e3")
 
+[node name="EnemyMeleeController" parent="." unique_id=1817430637 instance=ExtResource("2_5uy6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=880208614]
 offset = Vector2(0, 320)
 pixel_size = 0.0035
@@ -50,3 +54,6 @@ cast_shadow = 0
 mesh = SubResource("CylinderMesh_md0e3")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=188090712]
+
+[connection signal="ENEMY_BEGIN_ATTACK" from="EnemyMeleeController" to="." method="_on_enemy_melee_controller_enemy_begin_attack"]
+[connection signal="ENEMY_FINISH_ATTACK" from="EnemyMeleeController" to="." method="_on_enemy_melee_controller_enemy_finish_attack"]
