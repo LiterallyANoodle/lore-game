@@ -24,7 +24,7 @@ region = Rect2(1536, 0, 512, 512)
 [sub_resource type="SpriteFrames" id="SpriteFrames_5w3iq"]
 animations = [{
 "frames": [{
-"duration": 5.0,
+"duration": 2.5,
 "texture": SubResource("AtlasTexture_ii3lw")
 }, {
 "duration": 1.0,
@@ -46,11 +46,11 @@ animations = [{
 [node name="Area3D" type="Area3D" parent="." unique_id=1313981344]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1676812666]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, -0.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, -0.5)
 shape = SubResource("BoxShape3D_5w3iq")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Area3D/CollisionShape3D" unique_id=1383783310]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.7, -0.5)
 pixel_size = 0.005
 billboard = 1
 texture_filter = 0

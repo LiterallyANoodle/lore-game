@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b2fjuf5oyqq33" path="res://scenes/aim_controller.tscn" id="2_5hfox"]
 [ext_resource type="SpriteFrames" uid="uid://dtcagrcc66cf5" path="res://resources/lore_walking_forward.tres" id="2_wr06p"]
 [ext_resource type="Texture2D" uid="uid://cu6euhndqg4ol" path="res://assets/gun_shoot.png" id="3_6dqce"]
+[ext_resource type="PackedScene" uid="uid://bc2rwety2eb5t" path="res://scenes/player_melee_controller.tscn" id="5_0rk7u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
@@ -116,3 +117,5 @@ sprite_frames = ExtResource("2_wr06p")
 animation = &"walking_forward"
 autoplay = "walking_forward"
 frame_progress = 0.5224657
+
+[node name="PlayerMeleeController" parent="." unique_id=936719754 instance=ExtResource("5_0rk7u")]
