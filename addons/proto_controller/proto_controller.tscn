@@ -66,6 +66,8 @@ animations = [{
 [node name="ProtoController" type="CharacterBody3D" unique_id=1431296994 groups=["Player"]]
 script = ExtResource("1_ucva2")
 
+[node name="PlayerMeleeController" parent="." unique_id=764247077 instance=ExtResource("5_0rk7u")]
+
 [node name="Mesh" type="MeshInstance3D" parent="." unique_id=544419107]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 visible = false
@@ -117,5 +119,3 @@ sprite_frames = ExtResource("2_wr06p")
 animation = &"walking_forward"
 autoplay = "walking_forward"
 frame_progress = 0.5224657
-
-[node name="PlayerMeleeController" parent="." unique_id=936719754 instance=ExtResource("5_0rk7u")]

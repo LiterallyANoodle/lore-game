@@ -35,6 +35,7 @@ window/stretch/aspect="expand"
 [global_group]
 
 Player=""
+Enemy=""
 
 [input]
 
@@ -72,6 +73,7 @@ Backward={
 [physics]
 
 3d/physics_engine="Jolt Physics"
+3d/default_gravity=10.0
 
 [rendering]
 

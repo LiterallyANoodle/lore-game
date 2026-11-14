@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://bc2rwety2eb5t"]
 
 [ext_resource type="Texture2D" uid="uid://hq6hmp4jmjma" path="res://assets/whack.png" id="1_b4bys"]
+[ext_resource type="Script" uid="uid://bhg08g3xp7ccl" path="res://scenes/player_melee_controller.gd" id="1_ii3lw"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5w3iq"]
-size = Vector3(1, 1.5, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_b4bys"]
+size = Vector3(3.5, 1.5, 2.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ii3lw"]
 atlas = ExtResource("1_b4bys")
@@ -21,7 +22,7 @@ region = Rect2(1024, 0, 512, 512)
 atlas = ExtResource("1_b4bys")
 region = Rect2(1536, 0, 512, 512)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_5w3iq"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ii3lw"]
 animations = [{
 "frames": [{
 "duration": 2.5,
@@ -41,21 +42,23 @@ animations = [{
 "speed": 20.0
 }]
 
-[node name="PlayerMeleeController" type="Node3D" unique_id=936719754]
+[node name="PlayerMeleeController" type="Node3D" unique_id=764247077]
+script = ExtResource("1_ii3lw")
 
-[node name="Area3D" type="Area3D" parent="." unique_id=1313981344]
+[node name="Area3D" type="Area3D" parent="." unique_id=152873738]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1676812666]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, -0.5)
-shape = SubResource("BoxShape3D_5w3iq")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1250782440]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5786743, 0.95, -0.7246704)
+shape = SubResource("BoxShape3D_b4bys")
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Area3D/CollisionShape3D" unique_id=1383783310]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.7, -0.5)
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Area3D/CollisionShape3D" unique_id=526935645]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.048895955, 0.66616696, -0.5)
 pixel_size = 0.005
 billboard = 1
 texture_filter = 0
 render_priority = 1
-sprite_frames = SubResource("SpriteFrames_5w3iq")
+sprite_frames = SubResource("SpriteFrames_ii3lw")
 animation = &"whack"
-frame = 3
-frame_progress = 1.0
+
+[connection signal="animation_finished" from="Area3D/CollisionShape3D/AnimatedSprite3D" to="." method="_on_animated_sprite_3d_animation_finished"]
+[connection signal="frame_changed" from="Area3D/CollisionShape3D/AnimatedSprite3D" to="." method="_on_animated_sprite_3d_frame_changed"]
