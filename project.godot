@@ -21,6 +21,7 @@ boot_splash/minimum_display_time=1500
 [autoload]
 
 SignalBus="*uid://c5ari6ghp3yap"
+Game="*uid://c8a5o8k1175m8"
 
 [debug]
 

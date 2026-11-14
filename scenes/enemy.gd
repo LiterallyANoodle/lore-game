@@ -50,6 +50,7 @@ func decrement_health(amount: int = 1) -> void:
 
 func death() -> void:
 	print("Zecora died")
+	SignalBus.ENEMY_DEATH.emit()
 	self.queue_free()
 	
 func receive_knockback(amount: Vector3) -> void:

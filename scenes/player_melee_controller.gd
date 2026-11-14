@@ -26,7 +26,6 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if queued_right_click:
 		queued_right_click = false
-		SignalBus.WEAPON_FIRED.emit(Weapon.MELEE)
 		PLAYER_START_MELEE.emit()
 		sprite.stop()
 		sprite.visible = true

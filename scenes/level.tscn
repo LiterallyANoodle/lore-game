@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://wsgsaxoi1xlh"]
 
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_2q6dc"]
-[ext_resource type="PackedScene" uid="uid://b7tv448hwshm1" path="res://scenes/enemy.tscn" id="2_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://db4oyokn7e40r" path="res://scenes/enemy_spawner.tscn" id="2_w7c3h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2q6dc"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -57,6 +57,22 @@ size = Vector3(2, 5, 2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 3, -15)
 size = Vector3(2, 5, 2)
 
+[node name="Wall 1" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=1315812224]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5, 0, 0)
+size = Vector3(1, 20, 50)
+
+[node name="Wall 2" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=487094740]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5, 0, 0)
+size = Vector3(1, 20, 50)
+
+[node name="Wall 3" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=872339154]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25.5)
+size = Vector3(50, 20, 1)
+
+[node name="Wall 4" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=1235515786]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25.5)
+size = Vector3(50, 20, 1)
+
 [node name="ProtoController" parent="." unique_id=1379430219 instance=ExtResource("1_2q6dc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4046764, -9.536743e-07, 10.390377)
 can_jump = false
@@ -65,11 +81,5 @@ input_right = "Right"
 input_forward = "Forward"
 input_back = "Backward"
 
-[node name="Enemy" parent="." unique_id=1845111678 instance=ExtResource("2_w7c3h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6633582, -4.7683716e-07, 14.104158)
-
-[node name="Enemy2" parent="." unique_id=885445904 instance=ExtResource("2_w7c3h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.529366, -4.7683716e-07, 14.104158)
-
-[node name="Enemy3" parent="." unique_id=12247669 instance=ExtResource("2_w7c3h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3073816, -4.7683716e-07, 14.104158)
+[node name="EnemySpawner" parent="." unique_id=1632937001 instance=ExtResource("2_w7c3h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 20)
