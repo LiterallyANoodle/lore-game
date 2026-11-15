@@ -80,6 +80,8 @@ func _ready() -> void:
 	SignalBus.WEAPON_FIRED.connect(play_weapon_animation)
 	SignalBus.PLAYER_DAMAGED.connect(_on_player_damaged)
 	SignalBus.PLAYER_DEATH.connect(death)
+	SignalBus.START_RELOAD.connect(reload_round)
+	SignalBus.FINISH_RELOAD_LAST.connect(reload_round_last)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse capturing
@@ -235,3 +237,22 @@ func death() -> void:
 	spawn_gibs(250)
 	hide()
 	self.process_mode = Node.PROCESS_MODE_DISABLED
+	
+func reload_round() -> void:
+	gun_sprite.stop()
+	gun_sprite.play("reload")
+	
+func apply_reload_round() -> void:
+	if gun_sprite.animation == "reload" and gun_sprite.frame == 1:
+		print("Applying reload round signal")
+		print(SignalBus.APPLY_RELOAD_ROUND.get_connections())
+		SignalBus.APPLY_RELOAD_ROUND.emit()
+
+func _on_gun_animation_finished() -> void:
+	if gun_sprite.animation == "reload":
+		print("Frame reload round done")
+		SignalBus.FINISH_RELOAD_ROUND.emit()
+
+func reload_round_last() -> void:
+	gun_sprite.stop()
+	gun_sprite.play("idle")

@@ -1,5 +1,6 @@
 extends Node
 
+@export var score_goal: int = 100
 @export var player_max_health: int = 10
 @export var player_score: int = 0
 @export var enemy_spawn_time_seconds: float = 5

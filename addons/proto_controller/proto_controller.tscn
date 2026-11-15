@@ -80,7 +80,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"reload",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [node name="ProtoController" type="CharacterBody3D" unique_id=1431296994 groups=["Player"]]
@@ -138,3 +138,6 @@ sprite_frames = ExtResource("2_wr06p")
 animation = &"walking_forward_damage"
 autoplay = "standing"
 frame_progress = 0.04873133
+
+[connection signal="animation_finished" from="Head/Offset/Gun" to="." method="_on_gun_animation_finished"]
+[connection signal="frame_changed" from="Head/Offset/Gun" to="." method="apply_reload_round"]
