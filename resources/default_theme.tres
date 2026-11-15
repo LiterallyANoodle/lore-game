@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://b2guhgm4uj5sg"]
+
+[ext_resource type="FontFile" uid="uid://7iewnnxp0xse" path="res://assets/Ciircuit-Regular.ttf" id="1_o5cxf"]
+
+[resource]
+default_font = ExtResource("1_o5cxf")

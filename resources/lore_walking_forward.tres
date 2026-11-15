@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://bl5sugt3tbbp8" path="res://assets/lore_standing_forward.png" id="1_01xui"]
 [ext_resource type="Texture2D" uid="uid://7bwu8u2akp8u" path="res://assets/lore_walking_forward.png" id="2_4x4v2"]
+[ext_resource type="Texture2D" uid="uid://cce3dgsxn8ftq" path="res://assets/lore_standing_damage.png" id="2_xxeat"]
+[ext_resource type="Texture2D" uid="uid://v460cfrm8uy8" path="res://assets/lore_walking_damage.png" id="4_lmy52"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xxeat"]
 atlas = ExtResource("2_4x4v2")
@@ -31,6 +33,34 @@ region = Rect2(2560, 0, 512, 512)
 atlas = ExtResource("2_4x4v2")
 region = Rect2(3072, 0, 512, 512)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpe0e"]
+atlas = ExtResource("4_lmy52")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hyhg"]
+atlas = ExtResource("4_lmy52")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vi2m"]
+atlas = ExtResource("4_lmy52")
+region = Rect2(1024, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1m2kx"]
+atlas = ExtResource("4_lmy52")
+region = Rect2(1536, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idkj8"]
+atlas = ExtResource("4_lmy52")
+region = Rect2(2048, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bypc7"]
+atlas = ExtResource("4_lmy52")
+region = Rect2(2560, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2sjo"]
+atlas = ExtResource("4_lmy52")
+region = Rect2(3072, 0, 512, 512)
+
 [resource]
 animations = [{
 "frames": [{
@@ -39,6 +69,14 @@ animations = [{
 }],
 "loop": 1,
 "name": &"standing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xxeat")
+}],
+"loop": 1,
+"name": &"standing_damage",
 "speed": 5.0
 }, {
 "frames": [{
@@ -65,5 +103,31 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walking_forward",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpe0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hyhg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vi2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1m2kx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idkj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bypc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2sjo")
+}],
+"loop": 1,
+"name": &"walking_forward_damage",
 "speed": 12.0
 }]

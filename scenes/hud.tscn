@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bqcjja4gnw54u"]
+
+[ext_resource type="Script" uid="uid://bmle8k2uexclq" path="res://scenes/hud.gd" id="1_ahhtf"]
+
+[node name="HUD" type="Control" unique_id=1859724770]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 17.0
+offset_right = -17.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_ahhtf")
+
+[node name="Health" type="Label" parent="." unique_id=1705539890]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Aryanne Spirit
+"
+
+[node name="Score" type="Label" parent="." unique_id=1410296132]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Creatures Killed"
+horizontal_alignment = 2

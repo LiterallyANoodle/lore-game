@@ -21,6 +21,7 @@ boot_splash/minimum_display_time=1500
 [autoload]
 
 SignalBus="*uid://c5ari6ghp3yap"
+HUD="*uid://bqcjja4gnw54u"
 Game="*uid://c8a5o8k1175m8"
 
 [debug]
@@ -37,6 +38,10 @@ window/stretch/aspect="expand"
 
 Player=""
 Enemy=""
+
+[gui]
+
+theme/custom="uid://b2guhgm4uj5sg"
 
 [input]
 

@@ -35,6 +35,8 @@ func apply_attack() -> void:
 	# check frames until the attack frame
 	if sprite.frame == 3:
 		ENEMY_APPLY_ATTACK.emit(player_in_range)
+		if player_in_range != null:
+			Game.enemy_apply_attack()
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body == get_tree().get_first_node_in_group("Player"):
