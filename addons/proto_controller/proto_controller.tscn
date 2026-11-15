@@ -5,6 +5,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dtcagrcc66cf5" path="res://resources/lore_walking_forward.tres" id="2_wr06p"]
 [ext_resource type="Texture2D" uid="uid://cu6euhndqg4ol" path="res://assets/gun_shoot.png" id="3_6dqce"]
 [ext_resource type="PackedScene" uid="uid://bc2rwety2eb5t" path="res://scenes/player_melee_controller.tscn" id="5_0rk7u"]
+[ext_resource type="Texture2D" uid="uid://dgnriubbmjox8" path="res://assets/gun_reload.png" id="5_h60nn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
@@ -38,6 +39,14 @@ region = Rect2(192, 0, 96, 96)
 atlas = ExtResource("3_6dqce")
 region = Rect2(0, 0, 96, 96)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tksx"]
+atlas = ExtResource("5_h60nn")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ths8c"]
+atlas = ExtResource("5_h60nn")
+region = Rect2(96, 0, 96, 96)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_toyce"]
 animations = [{
 "frames": [{
@@ -60,6 +69,17 @@ animations = [{
 }],
 "loop": 1,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tksx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ths8c")
+}],
+"loop": 0,
+"name": &"reload",
 "speed": 5.0
 }]
 
@@ -103,7 +123,7 @@ no_depth_test = true
 texture_filter = 0
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_toyce")
-animation = &"fire"
+animation = &"reload"
 autoplay = "idle"
 
 [node name="Sprite" type="AnimatedSprite3D" parent="." unique_id=1730889921]
