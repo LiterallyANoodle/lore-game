@@ -3,6 +3,7 @@ extends Node
 @export var player_max_health: int = 10
 @export var player_score: int = 0
 @export var enemy_spawn_time_seconds: float = 5
+@export var godmode: bool = false
 @export var low_health_phrases: Array[String] = [ 
 	"OH FUCK", 
 	"SWEET CELESTIA", 
@@ -42,11 +43,12 @@ func increment_player_score(amount: int = 1) -> void:
 	
 func decrement_player_health(amount: int = 1) -> void:
 	SignalBus.PLAYER_DAMAGED.emit()
-	player_health_remaining -= amount
-	if player_health_remaining > 1:
-		HUD.update_player_health_display(player_health_remaining)
-	else:
-		HUD.update_player_health_display(low_health_phrases.pick_random())
+	if !godmode:
+		player_health_remaining -= amount
+		if player_health_remaining > 1:
+			HUD.update_player_health_display(player_health_remaining)
+		else:
+			HUD.update_player_health_display(low_health_phrases.pick_random())
 
 func enemy_apply_attack() -> void:
 	print("Apply attack")
