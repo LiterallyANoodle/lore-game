@@ -11,8 +11,11 @@ class_name Enemy extends CharacterBody3D
 @onready var navigation_enabled: bool = true
 @onready var queued_knockback: Vector3 = Vector3.ZERO
 
-@onready var navigation: NavigationAgent3D = $NavigationAgent3D
 var player: CharacterBody3D
+
+@onready var navigation: NavigationAgent3D = $NavigationAgent3D
+
+@onready var gibs: PackedScene = preload("res://scenes/gibs.tscn")
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("Player")
@@ -45,12 +48,14 @@ func _physics_process(delta: float) -> void:
 func decrement_health(amount: int = 1) -> void:
 	print("Hit Zecora")
 	self.health -= amount
+	spawn_gibs(5)
 	if health <= 0:
 		self.death()
 
 func death() -> void:
 	print("Zecora died")
 	SignalBus.ENEMY_DEATH.emit()
+	spawn_gibs(50)
 	self.queue_free()
 	
 func receive_knockback(amount: Vector3) -> void:
@@ -61,3 +66,9 @@ func _on_enemy_melee_controller_enemy_begin_attack() -> void:
 
 func _on_enemy_melee_controller_enemy_finish_attack() -> void:
 	navigation_enabled = true
+	
+func spawn_gibs(amount: int) -> void:
+	var new_gibs: Gibs = gibs.instantiate()
+	new_gibs.amount = amount
+	new_gibs.global_position = self.global_position + Vector3(0, 0.5, 0)
+	get_tree().current_scene.add_child(new_gibs)

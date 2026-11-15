@@ -9,6 +9,6 @@ func update_player_health_display(value: Variant) -> void:
 	health.text = full_string
 	
 func update_player_score_display(value: Variant) -> void:
-	var full_string: String = "Creatures Killed\n"
+	var full_string: String = "Creatures Destroyed\n"
 	full_string +=  str(value)
 	score.text = full_string

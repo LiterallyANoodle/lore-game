@@ -5,3 +5,4 @@ signal GUN_HIT(target: Node)
 signal ENEMY_DEATH
 signal SPAWN_ENEMY
 signal PLAYER_DAMAGED
+signal PLAYER_DEATH

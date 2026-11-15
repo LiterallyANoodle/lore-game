@@ -23,6 +23,8 @@ extends Node
 @onready var enemy_spawn_time_remaining: float = 0
 @onready var player_health_remaining: int = player_max_health
 
+@onready var death_screen: PackedScene = preload("res://scenes/death_screen.tscn")
+
 func _ready() -> void:
 	SignalBus.ENEMY_DEATH.connect(_on_enemy_death)
 	HUD.update_player_health_display(player_health_remaining)
@@ -49,6 +51,12 @@ func decrement_player_health(amount: int = 1) -> void:
 			HUD.update_player_health_display(player_health_remaining)
 		else:
 			HUD.update_player_health_display(low_health_phrases.pick_random())
+			
+		if player_health_remaining <= 0: 
+			SignalBus.PLAYER_DEATH.emit()
+			HUD.update_player_health_display("IT'S OVER")
+			var new_death_screen: Control = death_screen.instantiate()
+			get_tree().current_scene.add_child(new_death_screen)
 
 func enemy_apply_attack() -> void:
 	print("Apply attack")

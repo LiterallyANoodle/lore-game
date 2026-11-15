@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_2q6dc"]
 [ext_resource type="PackedScene" uid="uid://db4oyokn7e40r" path="res://scenes/enemy_spawner.tscn" id="2_w7c3h"]
+[ext_resource type="CompressedTexture3D" uid="uid://c8eto0pruvvvr" path="res://resources/level.GPUParticlesCollisionSDF3D_data.exr" id="4_mx8sn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2q6dc"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -83,3 +84,7 @@ input_back = "Backward"
 
 [node name="EnemySpawner" parent="." unique_id=1632937001 instance=ExtResource("2_w7c3h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 20)
+
+[node name="GPUParticlesCollisionSDF3D" type="GPUParticlesCollisionSDF3D" parent="." unique_id=1668263124]
+size = Vector3(100, 100, 100)
+texture = ExtResource("4_mx8sn")

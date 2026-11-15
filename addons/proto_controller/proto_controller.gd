@@ -70,6 +70,8 @@ var active_sprites: Dictionary = normal_sprites
 @onready var sprite: AnimatedSprite3D = $Sprite
 @onready var gun_sprite: AnimatedSprite3D = $Head/Offset/Gun
 
+@onready var gibs: PackedScene = preload("res://scenes/gibs.tscn")
+
 func _ready() -> void:
 	check_input_mappings()
 	look_rotation.y = rotation.y
@@ -77,6 +79,7 @@ func _ready() -> void:
 	
 	SignalBus.WEAPON_FIRED.connect(play_weapon_animation)
 	SignalBus.PLAYER_DAMAGED.connect(_on_player_damaged)
+	SignalBus.PLAYER_DEATH.connect(death)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse capturing
@@ -220,3 +223,15 @@ func play_weapon_animation(weapon: AimController.Weapon) -> void:
 		
 func is_invulnerable() -> bool:
 	return invulnerable
+	
+func spawn_gibs(amount: int) -> void:
+	var new_gibs: Gibs = gibs.instantiate()
+	new_gibs.amount = amount
+	new_gibs.global_position = self.global_position + Vector3(0, 0.5, 0)
+	get_tree().current_scene.add_child(new_gibs)
+	
+func death() -> void:
+	release_mouse()
+	spawn_gibs(250)
+	hide()
+	self.process_mode = Node.PROCESS_MODE_DISABLED
