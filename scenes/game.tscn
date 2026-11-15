@@ -4,6 +4,3 @@
 
 [node name="Game" type="Node" unique_id=1226698980]
 script = ExtResource("1_uwrxv")
-player_max_health = null
-player_score = null
-enemy_spawn_time_seconds = null

@@ -41,6 +41,7 @@ func increment_player_score(amount: int = 1) -> void:
 	HUD.update_player_score_display(player_score)
 	
 func decrement_player_health(amount: int = 1) -> void:
+	SignalBus.PLAYER_DAMAGED.emit()
 	player_health_remaining -= amount
 	if player_health_remaining > 1:
 		HUD.update_player_health_display(player_health_remaining)

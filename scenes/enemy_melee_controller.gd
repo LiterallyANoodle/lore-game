@@ -35,7 +35,7 @@ func apply_attack() -> void:
 	# check frames until the attack frame
 	if sprite.frame == 3:
 		ENEMY_APPLY_ATTACK.emit(player_in_range)
-		if player_in_range != null:
+		if player_in_range != null and !player_in_range.is_invulnerable():
 			Game.enemy_apply_attack()
 
 func _on_area_3d_body_entered(body: Node3D) -> void:

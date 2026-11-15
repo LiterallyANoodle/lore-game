@@ -15,6 +15,7 @@ extends CharacterBody3D
 @export var can_sprint : bool = false
 ## Can we press to enter freefly mode (noclip)?
 @export var can_freefly : bool = false
+@export var invulnerability_period_seconds: float = 1.5
 
 @export_group("Speeds")
 ## Look around rotation speed.
@@ -44,10 +45,24 @@ extends CharacterBody3D
 ## Name of Input Action to toggle freefly mode.
 @export var input_freefly : String = "freefly"
 
+var normal_sprites: Dictionary = {
+	"standing": "standing",
+	"walking_forward": "walking_forward"
+}
+
+var damage_sprites: Dictionary = {
+	"standing": "standing_damage",
+	"walking_forward": "walking_forward_damage"
+}
+
 var mouse_captured : bool = false
 var look_rotation : Vector2
 var move_speed : float = 0.0
 var freeflying : bool = false
+var just_hurt: bool = false
+var invulnerable: bool = false
+var invulnerable_time_remaining: float = 0.0
+var active_sprites: Dictionary = normal_sprites
 
 ## IMPORTANT REFERENCES
 @onready var head: Node3D = $Head
@@ -61,6 +76,7 @@ func _ready() -> void:
 	look_rotation.x = head.rotation.x
 	
 	SignalBus.WEAPON_FIRED.connect(play_weapon_animation)
+	SignalBus.PLAYER_DAMAGED.connect(_on_player_damaged)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse capturing
@@ -81,6 +97,18 @@ func _unhandled_input(event: InputEvent) -> void:
 			disable_freefly()
 
 func _physics_process(delta: float) -> void:
+	
+	invulnerable_time_remaining -= delta
+	if invulnerable_time_remaining <= 0.0:
+		invulnerable = false
+		invulnerable_time_remaining = 0.0
+		active_sprites = normal_sprites
+	if just_hurt:
+		just_hurt = false
+		invulnerable = true
+		invulnerable_time_remaining = invulnerability_period_seconds
+		active_sprites = damage_sprites
+	
 	# If freeflying, handle freefly and nothing else
 	if can_freefly and freeflying:
 		var input_dir := Input.get_vector(input_left, input_right, input_forward, input_back)
@@ -112,18 +140,20 @@ func _physics_process(delta: float) -> void:
 		if move_dir:
 			velocity.x = move_dir.x * move_speed
 			velocity.z = move_dir.z * move_speed
-			sprite.animation = "walking_forward"
+			sprite.animation = active_sprites["walking_forward"]
 		else:
 			velocity.x = move_toward(velocity.x, 0, move_speed)
 			velocity.z = move_toward(velocity.z, 0, move_speed)
-			sprite.animation = "standing"
+			sprite.animation = active_sprites["standing"]
 	else:
 		velocity.x = 0
 		velocity.y = 0
 	
 	# Use velocity to actually move
 	move_and_slide()
-
+	
+func _on_player_damaged() -> void:
+	just_hurt = true
 
 ## Rotate us to look around.
 ## Base of controller rotates around y (left/right). Head rotates around x (up/down).
@@ -188,3 +218,5 @@ func play_weapon_animation(weapon: AimController.Weapon) -> void:
 		gun_sprite.stop()
 		gun_sprite.play("fire")
 		
+func is_invulnerable() -> bool:
+	return invulnerable
