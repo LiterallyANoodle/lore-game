@@ -18,7 +18,8 @@ var player: CharacterBody3D
 
 @onready var gibs: PackedScene = preload("res://scenes/gibs.tscn")
 @onready var audio_streams: Dictionary = {
-	"enemy_hurt": preload("res://resources/enemy_hurt.ogg")
+	"enemy_hurt": preload("res://resources/enemy_hurt.ogg"),
+	"flesh_impact": preload("res://resources/flesh_impact.ogg")
 }
 
 func _ready() -> void:
@@ -53,10 +54,9 @@ func decrement_health(amount: int = 1) -> void:
 	print("Hit Zecora")
 	self.health -= amount
 	spawn_gibs(5)
+	play_sound("flesh_impact")
 	if health <= 0:
 		self.death()
-	else:
-		play_sound("enemy_hurt")
 
 func death() -> void:
 	print("Zecora died")
