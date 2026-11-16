@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://d2qu8yckg0sp6"]
+
+[ext_resource type="Script" uid="uid://drw1qxfhlkp40" path="res://addons/SpatialAudio/SpatialAudioPlayer3D.gd" id="1_jnqdv"]
+
+[node name="SpatialAudioPlayer3d" type="AudioStreamPlayer3D" unique_id=1690498887]
+script = ExtResource("1_jnqdv")
+
+[node name="Down" type="RayCast3D" parent="." unique_id=1142814193]
+target_position = Vector3(0, -100, 0)
+collision_mask = 8
+
+[node name="Left" type="RayCast3D" parent="." unique_id=1390880407]
+target_position = Vector3(100, 0, 0)
+collision_mask = 8
+
+[node name="Right" type="RayCast3D" parent="." unique_id=1900351589]
+target_position = Vector3(-100, 0, 0)
+collision_mask = 8
+
+[node name="Forward" type="RayCast3D" parent="." unique_id=813441049]
+target_position = Vector3(0, 0, 100)
+collision_mask = 8
+
+[node name="ForwardLeft" type="RayCast3D" parent="." unique_id=465989353]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+target_position = Vector3(0, 0, 100)
+collision_mask = 8
+
+[node name="ForwardRight" type="RayCast3D" parent="." unique_id=2033276474]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
+target_position = Vector3(0, 0, 100)
+collision_mask = 8
+
+[node name="BackwardLeft" type="RayCast3D" parent="." unique_id=534841984]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
+target_position = Vector3(0, 0, -100)
+collision_mask = 8
+
+[node name="BackwardRight" type="RayCast3D" parent="." unique_id=1815700511]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+target_position = Vector3(0, 0, -100)
+collision_mask = 8
+
+[node name="Backward" type="RayCast3D" parent="." unique_id=475392870]
+target_position = Vector3(0, 0, -100)
+collision_mask = 8
+
+[node name="Up" type="RayCast3D" parent="." unique_id=1902479146]
+target_position = Vector3(0, 100, 0)
+collision_mask = 8
+
+[node name="LineOfSight" type="RayCast3D" parent="." unique_id=178417645]

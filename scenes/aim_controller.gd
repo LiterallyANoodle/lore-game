@@ -12,14 +12,21 @@ enum Weapon { GUN }
 @onready var reloading: bool = false
 
 @onready var hitmarker: PackedScene = preload("res://scenes/hitmarker.tscn")
+@onready var audio_streams: Dictionary = {
+	"cylinder_slam": preload("res://resources/cylinder_slam.ogg"),
+	"rod_push": preload("res://resources/rod_push.ogg"),
+	"trigger_empty": preload("res://resources/trigger_empty.ogg"),
+	"trigger_shoot": preload("res://resources/lecker_shoot.ogg")
+}
 
 @onready var raycast: RayCast3D = $RayCast3D
 @onready var gun_sprite: AnimatedSprite3D = $Gun
+@onready var ammo_indicator: AmmoIndicator = $AmmoIndicator
+@onready var spatial_audio_player: SpatialAudioPlayer3D = $SpatialAudioPlayer3D
 
 func _ready() -> void:
 	raycast.target_position = Vector3(0, 0, -range)
-	
-	# copied from proto_controller. Clean this up later.
+	ammo_indicator.update_ammo_display(magazine_current_amount)
 	SignalBus.WEAPON_FIRED.connect(play_weapon_animation)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -48,6 +55,8 @@ func _physics_process(delta: float) -> void:
 		SignalBus.WEAPON_FIRED.emit(Weapon.GUN)
 		raycast.force_raycast_update()
 		magazine_current_amount -= 1
+		ammo_indicator.update_ammo_display(magazine_current_amount)
+		play_sound("trigger_shoot")
 		print("Current mag: " + str(magazine_current_amount))
 
 		if raycast.is_colliding():
@@ -65,6 +74,10 @@ func _physics_process(delta: float) -> void:
 				get_tree().current_scene.add_child(hitmarker_instance)
 				hitmarker_instance.top_level = true
 				hitmarker_instance.global_position = collision_point
+	# gun is empty
+	elif queued_left_click and magazine_current_amount <= 0:
+		queued_left_click = false
+		play_sound("trigger_empty")
 				
 func start_reload() -> void:
 	print("Start reload with amount: " + str(magazine_current_amount))
@@ -81,6 +94,8 @@ func apply_reload_round() -> void:
 	if gun_sprite.animation == "reload" and gun_sprite.frame == 1:
 		SignalBus.APPLY_RELOAD_ROUND.emit()
 		magazine_current_amount += 1
+		ammo_indicator.update_ammo_display(magazine_current_amount)
+		play_sound("rod_push")
 
 func _on_gun_animation_finished() -> void:
 	if gun_sprite.animation == "reload":
@@ -93,8 +108,13 @@ func reload_round_last() -> void:
 	SignalBus.FINISH_RELOAD_LAST.emit()
 	gun_sprite.stop()
 	gun_sprite.play("idle")
+	play_sound("cylinder_slam")
 	
 func play_weapon_animation(weapon: AimController.Weapon) -> void:
 	if AimController.Weapon.GUN == weapon:
 		gun_sprite.stop()
 		gun_sprite.play("fire")
+		
+func play_sound(name: String) -> void:
+	spatial_audio_player.stream = audio_streams[name]
+	spatial_audio_player.play()
