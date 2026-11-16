@@ -14,12 +14,13 @@ enum Weapon { GUN }
 @onready var hitmarker: PackedScene = preload("res://scenes/hitmarker.tscn")
 
 @onready var raycast: RayCast3D = $RayCast3D
+@onready var gun_sprite: AnimatedSprite3D = $Gun
 
 func _ready() -> void:
 	raycast.target_position = Vector3(0, 0, -range)
 	
-	SignalBus.APPLY_RELOAD_ROUND.connect(apply_reload)
-	SignalBus.FINISH_RELOAD_ROUND.connect(finish_reload_round)
+	# copied from proto_controller. Clean this up later.
+	SignalBus.WEAPON_FIRED.connect(play_weapon_animation)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Left Mouse"):
@@ -68,14 +69,32 @@ func _physics_process(delta: float) -> void:
 func start_reload() -> void:
 	print("Start reload with amount: " + str(magazine_current_amount))
 	if magazine_current_amount < magazine_max_size:
-		SignalBus.START_RELOAD.emit()
+		reload_round()
 	else:
-		reloading = false
-		SignalBus.FINISH_RELOAD_LAST.emit()
+		reload_round_last()
 	
-func apply_reload() -> void:
-	print("Apply reload round")
-	magazine_current_amount += 1
+func reload_round() -> void:
+	gun_sprite.stop()
+	gun_sprite.play("reload")
+	
+func apply_reload_round() -> void:
+	if gun_sprite.animation == "reload" and gun_sprite.frame == 1:
+		SignalBus.APPLY_RELOAD_ROUND.emit()
+		magazine_current_amount += 1
 
-func finish_reload_round() -> void:
-	start_reload()
+func _on_gun_animation_finished() -> void:
+	if gun_sprite.animation == "reload":
+		print("Frame reload round done")
+		# start reloading next round
+		start_reload()
+
+func reload_round_last() -> void:
+	reloading = false
+	SignalBus.FINISH_RELOAD_LAST.emit()
+	gun_sprite.stop()
+	gun_sprite.play("idle")
+	
+func play_weapon_animation(weapon: AimController.Weapon) -> void:
+	if AimController.Weapon.GUN == weapon:
+		gun_sprite.stop()
+		gun_sprite.play("fire")

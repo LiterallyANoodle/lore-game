@@ -77,11 +77,8 @@ func _ready() -> void:
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
 	
-	SignalBus.WEAPON_FIRED.connect(play_weapon_animation)
 	SignalBus.PLAYER_DAMAGED.connect(_on_player_damaged)
 	SignalBus.PLAYER_DEATH.connect(death)
-	SignalBus.START_RELOAD.connect(reload_round)
-	SignalBus.FINISH_RELOAD_LAST.connect(reload_round_last)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse capturing
@@ -217,11 +214,6 @@ func check_input_mappings() -> void:
 	if can_freefly and not InputMap.has_action(input_freefly):
 		push_error("Freefly disabled. No InputAction found for input_freefly: " + input_freefly)
 		can_freefly = false
-
-func play_weapon_animation(weapon: AimController.Weapon) -> void:
-	if AimController.Weapon.GUN == weapon:
-		gun_sprite.stop()
-		gun_sprite.play("fire")
 		
 func is_invulnerable() -> bool:
 	return invulnerable
@@ -237,22 +229,3 @@ func death() -> void:
 	spawn_gibs(250)
 	hide()
 	self.process_mode = Node.PROCESS_MODE_DISABLED
-	
-func reload_round() -> void:
-	gun_sprite.stop()
-	gun_sprite.play("reload")
-	
-func apply_reload_round() -> void:
-	if gun_sprite.animation == "reload" and gun_sprite.frame == 1:
-		print("Applying reload round signal")
-		print(SignalBus.APPLY_RELOAD_ROUND.get_connections())
-		SignalBus.APPLY_RELOAD_ROUND.emit()
-
-func _on_gun_animation_finished() -> void:
-	if gun_sprite.animation == "reload":
-		print("Frame reload round done")
-		SignalBus.FINISH_RELOAD_ROUND.emit()
-
-func reload_round_last() -> void:
-	gun_sprite.stop()
-	gun_sprite.play("idle")

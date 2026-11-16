@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cmqh4kplpq1xh"]
+
+[ext_resource type="Script" uid="uid://dwwdi7v0428oe" path="res://ammo_indicator.gd" id="1_jdm7o"]
+[ext_resource type="Texture2D" uid="uid://8dk3ix6g2fri" path="res://assets/cartridge.png" id="2_hx3u1"]
+
+[node name="AmmoIndicator" type="Node2D" unique_id=924172145]
+script = ExtResource("1_jdm7o")
+sprite_texture = ExtResource("2_hx3u1")
