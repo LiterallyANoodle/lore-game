@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://hq6hmp4jmjma" path="res://assets/whack.png" id="1_b4bys"]
 [ext_resource type="Script" uid="uid://bhg08g3xp7ccl" path="res://scenes/player_melee_controller.gd" id="1_ii3lw"]
+[ext_resource type="PackedScene" uid="uid://d2qu8yckg0sp6" path="res://addons/SpatialAudio/SpatialAudioPlayer3D.tscn" id="3_51f4a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b4bys"]
 size = Vector3(3.5, 1.5, 2.5)
@@ -59,6 +60,8 @@ texture_filter = 0
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_ii3lw")
 animation = &"whack"
+
+[node name="SpatialAudioPlayer3D" parent="." unique_id=1690498887 instance=ExtResource("3_51f4a")]
 
 [connection signal="animation_finished" from="Area3D/CollisionShape3D/AnimatedSprite3D" to="." method="_on_animated_sprite_3d_animation_finished"]
 [connection signal="frame_changed" from="Area3D/CollisionShape3D/AnimatedSprite3D" to="." method="_on_animated_sprite_3d_frame_changed"]

@@ -15,6 +15,12 @@ signal PLAYER_FINISH_MELEE
 
 @onready var area: Area3D = $Area3D
 @onready var sprite: AnimatedSprite3D = $Area3D/CollisionShape3D/AnimatedSprite3D
+@onready var spatial_audio_player: SpatialAudioPlayer3D = $SpatialAudioPlayer3D
+
+@onready var audio_streams: Dictionary = {
+	"snd_hurt1": preload("res://resources/snd_hurt1.ogg"),
+	"snd_heavyswing": preload("res://resources/snd_heavyswing.ogg")
+}
 
 func _ready() -> void:
 	sprite.visible = false
@@ -34,6 +40,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if queued_apply_attack:
 		queued_apply_attack = false
+		play_sound("snd_heavyswing")
 		var targets: Array[Node3D] = area.get_overlapping_bodies()
 		for t: Node3D in targets:
 			if t.get_groups().any(func(group: StringName) -> bool: return group == "Enemy"):
@@ -64,3 +71,7 @@ func _on_animated_sprite_3d_frame_changed() -> void:
 	if sprite.frame == 1:
 		PLAYER_APPLY_MELEE.emit()
 		queued_apply_attack = true
+
+func play_sound(name: String) -> void:
+	spatial_audio_player.stream = audio_streams[name]
+	spatial_audio_player.play()

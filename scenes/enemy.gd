@@ -14,8 +14,12 @@ class_name Enemy extends CharacterBody3D
 var player: CharacterBody3D
 
 @onready var navigation: NavigationAgent3D = $NavigationAgent3D
+@onready var spatial_audio_player: SpatialAudioPlayer3D = $SpatialAudioPlayer3D
 
 @onready var gibs: PackedScene = preload("res://scenes/gibs.tscn")
+@onready var audio_streams: Dictionary = {
+	"enemy_hurt": preload("res://resources/enemy_hurt.ogg")
+}
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("Player")
@@ -51,6 +55,8 @@ func decrement_health(amount: int = 1) -> void:
 	spawn_gibs(5)
 	if health <= 0:
 		self.death()
+	else:
+		play_sound("enemy_hurt")
 
 func death() -> void:
 	print("Zecora died")
@@ -72,3 +78,7 @@ func spawn_gibs(amount: int) -> void:
 	new_gibs.amount = amount
 	new_gibs.global_position = self.global_position + Vector3(0, 0.5, 0)
 	get_tree().current_scene.add_child(new_gibs)
+
+func play_sound(name: String) -> void:
+	spatial_audio_player.stream = audio_streams[name]
+	spatial_audio_player.play()

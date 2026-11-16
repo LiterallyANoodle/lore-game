@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b2fjuf5oyqq33" path="res://scenes/aim_controller.tscn" id="2_5hfox"]
 [ext_resource type="SpriteFrames" uid="uid://dtcagrcc66cf5" path="res://resources/lore_walking_forward.tres" id="2_wr06p"]
 [ext_resource type="PackedScene" uid="uid://bc2rwety2eb5t" path="res://scenes/player_melee_controller.tscn" id="5_0rk7u"]
+[ext_resource type="PackedScene" uid="uid://d2qu8yckg0sp6" path="res://addons/SpatialAudio/SpatialAudioPlayer3D.tscn" id="5_h60nn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
@@ -69,5 +70,7 @@ sprite_frames = ExtResource("2_wr06p")
 animation = &"walking_forward_damage"
 autoplay = "standing"
 frame_progress = 0.04873133
+
+[node name="SpatialAudioPlayer3D" parent="." unique_id=1690498887 instance=ExtResource("5_h60nn")]
 
 [editable path="Head/Offset/Camera3D/AimController"]
