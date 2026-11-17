@@ -23,6 +23,7 @@ boot_splash/minimum_display_time=1500
 SignalBus="*uid://c5ari6ghp3yap"
 HUD="*uid://bqcjja4gnw54u"
 Game="*uid://c8a5o8k1175m8"
+AudioManager="*uid://do0kqvd584o04"
 
 [debug]
 

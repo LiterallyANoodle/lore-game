@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bf7ur0tlh7ix0"]
+
+[ext_resource type="Script" uid="uid://cu5ksea133ieq" path="res://scenes/spatial_audio_client_3d.gd" id="1_tgmpc"]
+
+[node name="SpatialAudioClient3d" type="Node" unique_id=1904701676]
+script = ExtResource("1_tgmpc")
+metadata/_custom_type_script = "uid://dq4qw8nop6dj4"

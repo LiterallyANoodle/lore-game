@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d3ulhwqvcxorf"]
+
+[ext_resource type="Script" uid="uid://blclw68wyxfmp" path="res://scenes/audio_client_3d.gd" id="1_gmoe0"]
+
+[node name="AudioClient3d" type="Node" unique_id=1288751613]
+script = ExtResource("1_gmoe0")
+metadata/_custom_type_script = "uid://dq4qw8nop6dj4"
