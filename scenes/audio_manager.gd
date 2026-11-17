@@ -28,15 +28,14 @@ func play_sound(sound: SoundEffect) -> AudioStreamPlayer:
 
 func play_sound_2d(
 		sound: SoundEffect, 
-		start_position: Vector2, 
-		follow_node: Node2D = null
+		follow_node: Node2D
 	) -> AudioStreamPlayer2D:
 	var new_player: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
 	self.add_child(new_player)
 	new_player.stream = sound.stream
 	new_player.volume_db = sound.volume_db
 	new_player.bus = sound.bus
-	new_player.global_position = start_position
+	new_player.global_position = follow_node.global_position
 	var follower: AudioFollower = AudioFollower.new(new_player, follow_node)
 	audio_followers.append(follower)
 	new_player.finished.connect(destroy_player.bind(follower))
@@ -45,15 +44,14 @@ func play_sound_2d(
 	
 func play_sound_3d(
 		sound: SoundEffect, 
-		start_position: Vector3, 
-		follow_node: Node3D = null
+		follow_node: Node3D
 	) -> AudioStreamPlayer3D:
 	var new_player: AudioStreamPlayer3D = AudioStreamPlayer3D.new()
 	self.add_child(new_player)
 	new_player.stream = sound.stream
 	new_player.volume_db = sound.volume_db
 	new_player.bus = sound.bus
-	new_player.global_position = start_position
+	new_player.global_position = follow_node.global_position
 	var follower: AudioFollower = AudioFollower.new(new_player, follow_node)
 	audio_followers.append(follower)
 	new_player.finished.connect(destroy_player.bind(follower))
@@ -62,15 +60,14 @@ func play_sound_3d(
 	
 func play_spatial_sound_3d(
 		sound: SoundEffect, 
-		start_position: Vector3, 
-		follow_node: Node3D = null
+		follow_node: Node3D
 	) -> SpatialAudioPlayer3D:
 	var new_player: SpatialAudioPlayer3D = SPATIAL_AUDIO_PLAYER_SCENE.instantiate() as SpatialAudioPlayer3D
 	self.add_child(new_player)
 	new_player.stream = sound.stream
 	new_player.volume_db = sound.volume_db
 	new_player.bus = sound.bus
-	new_player.global_position = start_position
+	new_player.global_position = follow_node.global_position
 	var follower: AudioFollower = AudioFollower.new(new_player, follow_node)
 	audio_followers.append(follower)
 	new_player.finished.connect(destroy_player.bind(follower))
