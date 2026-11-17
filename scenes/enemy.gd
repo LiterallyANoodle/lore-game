@@ -6,6 +6,9 @@ class_name Enemy extends CharacterBody3D
 @export var velocity_damping_factor: float = 0.01
 @export var has_gravity: bool = true
 
+@export_group("Sound Effects")
+@export var hurt: SoundEffect
+
 @onready var player_location_timer_seconds: float = 0.1
 @onready var player_location_timer_remaining: int = 1
 @onready var navigation_enabled: bool = true
@@ -14,13 +17,9 @@ class_name Enemy extends CharacterBody3D
 var player: CharacterBody3D
 
 @onready var navigation: NavigationAgent3D = $NavigationAgent3D
-@onready var spatial_audio_player: SpatialAudioPlayer3D = $SpatialAudioPlayer3D
+@onready var audio_client: SpatialAudioClient3D = $SpatialAudioClient3d
 
 @onready var gibs: PackedScene = preload("res://scenes/gibs.tscn")
-@onready var audio_streams: Dictionary = {
-	"enemy_hurt": preload("res://resources/enemy_hurt.ogg"),
-	"flesh_impact": preload("res://resources/flesh_impact.ogg")
-}
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("Player")
@@ -54,7 +53,7 @@ func decrement_health(amount: int = 1) -> void:
 	print("Hit Zecora")
 	self.health -= amount
 	spawn_gibs(5)
-	play_sound("flesh_impact")
+	audio_client.play_sound(hurt)
 	if health <= 0:
 		self.death()
 
@@ -78,7 +77,3 @@ func spawn_gibs(amount: int) -> void:
 	new_gibs.amount = amount
 	new_gibs.global_position = self.global_position + Vector3(0, 0.5, 0)
 	get_tree().current_scene.add_child(new_gibs)
-
-func play_sound(name: String) -> void:
-	spatial_audio_player.stream = audio_streams[name]
-	spatial_audio_player.play()

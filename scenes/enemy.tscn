@@ -3,8 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://bgu1smtwfdbod" path="res://assets/zecora.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://blv3fjvswp5yp" path="res://scenes/enemy.gd" id="1_md0e3"]
 [ext_resource type="PackedScene" uid="uid://cqvtaydbt50vs" path="res://scenes/enemy_melee_controller.tscn" id="2_5uy6h"]
+[ext_resource type="Script" uid="uid://rpgoya64vgks" path="res://scenes/sound_effect.gd" id="2_nenq2"]
 [ext_resource type="Script" uid="uid://dhop46nnt3orm" path="res://scenes/hurtbox.gd" id="3_4ra3w"]
-[ext_resource type="PackedScene" uid="uid://d2qu8yckg0sp6" path="res://addons/SpatialAudio/SpatialAudioPlayer3D.tscn" id="5_c4w8v"]
+[ext_resource type="AudioStream" uid="uid://3yixtpq74kfu" path="res://resources/flesh_impact.ogg" id="3_md484"]
+[ext_resource type="PackedScene" uid="uid://bf7ur0tlh7ix0" path="res://scenes/SpatialAudioClient3D.tscn" id="5_c4w8v"]
+
+[sub_resource type="Resource" id="Resource_c4w8v"]
+script = ExtResource("2_nenq2")
+stream = ExtResource("3_md484")
+metadata/_custom_type_script = "uid://rpgoya64vgks"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yrjyd"]
 animations = [{
@@ -31,6 +38,7 @@ height = 0.001
 
 [node name="Enemy" type="CharacterBody3D" unique_id=885445904 groups=["Enemy"]]
 script = ExtResource("1_md0e3")
+hurt = SubResource("Resource_c4w8v")
 
 [node name="EnemyMeleeController" parent="." unique_id=1817430637 instance=ExtResource("2_5uy6h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
@@ -56,8 +64,7 @@ mesh = SubResource("CylinderMesh_md0e3")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=188090712]
 
-[node name="SpatialAudioPlayer3D" parent="." unique_id=1690498887 instance=ExtResource("5_c4w8v")]
-volume_db = 4.0
+[node name="SpatialAudioClient3d" parent="." unique_id=1018757877 instance=ExtResource("5_c4w8v")]
 
 [connection signal="ENEMY_BEGIN_ATTACK" from="EnemyMeleeController" to="." method="_on_enemy_melee_controller_enemy_begin_attack"]
 [connection signal="ENEMY_FINISH_ATTACK" from="EnemyMeleeController" to="." method="_on_enemy_melee_controller_enemy_finish_attack"]

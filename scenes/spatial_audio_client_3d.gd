@@ -1,3 +1,4 @@
+@icon("res://addons/at-icons/node3d/speech_bubble_exclamation.svg")
 class_name SpatialAudioClient3D extends Node3D
 
 func play_sound(sound_effect: SoundEffect, follow_node: Node3D = null) -> void:

@@ -6,23 +6,23 @@ enum Weapon { GUN }
 @export var magazine_max_size: int = 7
 @export var enable_hitmarkers: bool = false
 
+@export_group("Sound Effects")
+@export var cylinder_slam: SoundEffect
+@export var rod_push: SoundEffect
+@export var trigger_empty: SoundEffect
+@export var trigger_shoot: SoundEffect
+
 @onready var queued_left_click: bool = false
 @onready var queued_reload: bool = false
 @onready var magazine_current_amount: int = magazine_max_size
 @onready var reloading: bool = false
 
 @onready var hitmarker: PackedScene = preload("res://scenes/hitmarker.tscn")
-@onready var audio_streams: Dictionary = {
-	"cylinder_slam": preload("res://resources/cylinder_slam.ogg"),
-	"rod_push": preload("res://resources/rod_push.ogg"),
-	"trigger_empty": preload("res://resources/trigger_empty.ogg"),
-	"trigger_shoot": preload("res://resources/lecker_shoot.ogg")
-}
 
 @onready var raycast: RayCast3D = $RayCast3D
 @onready var gun_sprite: AnimatedSprite3D = $Gun
 @onready var ammo_indicator: AmmoIndicator = $AmmoIndicator
-@onready var spatial_audio_player: SpatialAudioPlayer3D = $SpatialAudioPlayer3D
+@onready var audio_client: SpatialAudioClient3D = $SpatialAudioClient3d
 
 func _ready() -> void:
 	raycast.target_position = Vector3(0, 0, -range)
@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 		raycast.force_raycast_update()
 		magazine_current_amount -= 1
 		ammo_indicator.update_ammo_display(magazine_current_amount)
-		play_sound("trigger_shoot")
+		audio_client.play_sound(trigger_shoot)
 		print("Current mag: " + str(magazine_current_amount))
 
 		if raycast.is_colliding():
@@ -77,7 +77,7 @@ func _physics_process(delta: float) -> void:
 	# gun is empty
 	elif queued_left_click and magazine_current_amount <= 0:
 		queued_left_click = false
-		play_sound("trigger_empty")
+		audio_client.play_sound(trigger_empty)
 				
 func start_reload() -> void:
 	print("Start reload with amount: " + str(magazine_current_amount))
@@ -95,7 +95,7 @@ func apply_reload_round() -> void:
 		SignalBus.APPLY_RELOAD_ROUND.emit()
 		magazine_current_amount += 1
 		ammo_indicator.update_ammo_display(magazine_current_amount)
-		play_sound("rod_push")
+		audio_client.play_sound(rod_push)
 
 func _on_gun_animation_finished() -> void:
 	if gun_sprite.animation == "reload":
@@ -108,13 +108,9 @@ func reload_round_last() -> void:
 	SignalBus.FINISH_RELOAD_LAST.emit()
 	gun_sprite.stop()
 	gun_sprite.play("idle")
-	play_sound("cylinder_slam")
+	audio_client.play_sound(cylinder_slam)
 	
 func play_weapon_animation(weapon: AimController.Weapon) -> void:
 	if AimController.Weapon.GUN == weapon:
 		gun_sprite.stop()
 		gun_sprite.play("fire")
-		
-func play_sound(name: String) -> void:
-	spatial_audio_player.stream = audio_streams[name]
-	spatial_audio_player.play()

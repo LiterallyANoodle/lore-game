@@ -2,6 +2,5 @@
 
 [ext_resource type="Script" uid="uid://blclw68wyxfmp" path="res://scenes/audio_client_3d.gd" id="1_gmoe0"]
 
-[node name="AudioClient3d" type="Node" unique_id=1288751613]
+[node name="AudioClient3d" type="Node3D" unique_id=2077662969]
 script = ExtResource("1_gmoe0")
-metadata/_custom_type_script = "uid://dq4qw8nop6dj4"

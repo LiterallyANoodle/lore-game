@@ -45,6 +45,9 @@ extends CharacterBody3D
 ## Name of Input Action to toggle freefly mode.
 @export var input_freefly : String = "freefly"
 
+@export_group("Sound Effects")
+@export var hurt: SoundEffect
+
 var normal_sprites: Dictionary = {
 	"standing": "standing",
 	"walking_forward": "walking_forward"
@@ -68,13 +71,9 @@ var active_sprites: Dictionary = normal_sprites
 @onready var head: Node3D = $Head
 @onready var collider: CollisionShape3D = $Collider
 @onready var sprite: AnimatedSprite3D = $Sprite
-@onready var spatial_audio_player: SpatialAudioPlayer3D = $SpatialAudioPlayer3D
+@onready var audio_client: SpatialAudioClient3D = $SpatialAudioClient3d
 
 @onready var gibs: PackedScene = preload("res://scenes/gibs.tscn")
-@onready var audio_streams: Dictionary = {
-	"snd_hurt1": preload("res://resources/snd_hurt1.ogg"),
-	"snd_heavyswing": preload("res://resources/snd_heavyswing.ogg")
-}
 
 func _ready() -> void:
 	check_input_mappings()
@@ -114,7 +113,7 @@ func _physics_process(delta: float) -> void:
 		invulnerable = true
 		invulnerable_time_remaining = invulnerability_period_seconds
 		active_sprites = damage_sprites
-		play_sound("snd_hurt1")
+		audio_client.play_sound(hurt)
 	
 	# If freeflying, handle freefly and nothing else
 	if can_freefly and freeflying:
@@ -234,7 +233,3 @@ func death() -> void:
 	spawn_gibs(250)
 	hide()
 	self.process_mode = Node.PROCESS_MODE_DISABLED
-
-func play_sound(name: String) -> void:
-	spatial_audio_player.stream = audio_streams[name]
-	spatial_audio_player.play()

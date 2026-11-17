@@ -2,10 +2,34 @@
 
 [ext_resource type="Script" uid="uid://c6kia3ukphk5u" path="res://scenes/aim_controller.gd" id="1_aavwb"]
 [ext_resource type="Texture2D" uid="uid://cu6euhndqg4ol" path="res://assets/gun_shoot.png" id="2_d7617"]
+[ext_resource type="Script" uid="uid://rpgoya64vgks" path="res://scenes/sound_effect.gd" id="2_dd4vu"]
+[ext_resource type="AudioStream" uid="uid://ct8k81bb0i061" path="res://resources/cylinder_slam.ogg" id="3_ga1ya"]
 [ext_resource type="Texture2D" uid="uid://dgnriubbmjox8" path="res://assets/gun_reload.png" id="3_utc00"]
 [ext_resource type="PackedScene" uid="uid://cmqh4kplpq1xh" path="res://scenes/ammo_indicator.tscn" id="4_utc00"]
-[ext_resource type="PackedScene" uid="uid://d2qu8yckg0sp6" path="res://addons/SpatialAudio/SpatialAudioPlayer3D.tscn" id="5_sl63x"]
+[ext_resource type="AudioStream" uid="uid://betx6l27k2p73" path="res://resources/rod_push.ogg" id="4_xs0lu"]
+[ext_resource type="PackedScene" uid="uid://bf7ur0tlh7ix0" path="res://scenes/SpatialAudioClient3D.tscn" id="5_sl63x"]
+[ext_resource type="AudioStream" uid="uid://djdtvnvpkuo5v" path="res://resources/lecker_shoot.ogg" id="6_dd4vu"]
 [ext_resource type="AudioStream" uid="uid://b0g0cuinwukhg" path="res://resources/trigger_empty.ogg" id="6_hsdfq"]
+
+[sub_resource type="Resource" id="Resource_sl63x"]
+script = ExtResource("2_dd4vu")
+stream = ExtResource("3_ga1ya")
+metadata/_custom_type_script = "uid://rpgoya64vgks"
+
+[sub_resource type="Resource" id="Resource_hsdfq"]
+script = ExtResource("2_dd4vu")
+stream = ExtResource("4_xs0lu")
+metadata/_custom_type_script = "uid://rpgoya64vgks"
+
+[sub_resource type="Resource" id="Resource_4umij"]
+script = ExtResource("2_dd4vu")
+stream = ExtResource("6_hsdfq")
+metadata/_custom_type_script = "uid://rpgoya64vgks"
+
+[sub_resource type="Resource" id="Resource_bctan"]
+script = ExtResource("2_dd4vu")
+stream = ExtResource("6_dd4vu")
+metadata/_custom_type_script = "uid://rpgoya64vgks"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h60nn"]
 atlas = ExtResource("2_d7617")
@@ -65,6 +89,10 @@ animations = [{
 
 [node name="AimController" type="Node3D" unique_id=41645329]
 script = ExtResource("1_aavwb")
+cylinder_slam = SubResource("Resource_sl63x")
+rod_push = SubResource("Resource_hsdfq")
+trigger_empty = SubResource("Resource_4umij")
+trigger_shoot = SubResource("Resource_bctan")
 
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=917740356]
 target_position = Vector3(0, 0, -500)
@@ -83,8 +111,7 @@ autoplay = "idle"
 [node name="AmmoIndicator" parent="." unique_id=924172145 instance=ExtResource("4_utc00")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.6, -1.7)
 
-[node name="SpatialAudioPlayer3D" parent="." unique_id=1690498887 instance=ExtResource("5_sl63x")]
-stream = ExtResource("6_hsdfq")
+[node name="SpatialAudioClient3d" parent="." unique_id=1904701676 instance=ExtResource("5_sl63x")]
 
 [connection signal="animation_finished" from="Gun" to="." method="_on_gun_animation_finished"]
 [connection signal="frame_changed" from="Gun" to="." method="apply_reload_round"]

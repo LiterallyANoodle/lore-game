@@ -2,9 +2,16 @@
 
 [ext_resource type="Script" uid="uid://crjbuv0uyvl2n" path="res://addons/proto_controller/proto_controller.gd" id="1_ucva2"]
 [ext_resource type="PackedScene" uid="uid://b2fjuf5oyqq33" path="res://scenes/aim_controller.tscn" id="2_5hfox"]
+[ext_resource type="Script" uid="uid://rpgoya64vgks" path="res://scenes/sound_effect.gd" id="2_ujot4"]
 [ext_resource type="SpriteFrames" uid="uid://dtcagrcc66cf5" path="res://resources/lore_walking_forward.tres" id="2_wr06p"]
+[ext_resource type="AudioStream" uid="uid://cpd0f606qxpt4" path="res://resources/snd_hurt1.ogg" id="3_1tksx"]
 [ext_resource type="PackedScene" uid="uid://bc2rwety2eb5t" path="res://scenes/player_melee_controller.tscn" id="5_0rk7u"]
-[ext_resource type="PackedScene" uid="uid://d2qu8yckg0sp6" path="res://addons/SpatialAudio/SpatialAudioPlayer3D.tscn" id="5_h60nn"]
+[ext_resource type="PackedScene" uid="uid://bf7ur0tlh7ix0" path="res://scenes/SpatialAudioClient3D.tscn" id="5_h60nn"]
+
+[sub_resource type="Resource" id="Resource_0rk7u"]
+script = ExtResource("2_ujot4")
+stream = ExtResource("3_1tksx")
+metadata/_custom_type_script = "uid://rpgoya64vgks"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
@@ -28,6 +35,7 @@ height = 0.001
 
 [node name="ProtoController" type="CharacterBody3D" unique_id=1431296994 groups=["Player"]]
 script = ExtResource("1_ucva2")
+hurt = SubResource("Resource_0rk7u")
 
 [node name="PlayerMeleeController" parent="." unique_id=764247077 instance=ExtResource("5_0rk7u")]
 
@@ -71,6 +79,6 @@ animation = &"walking_forward_damage"
 autoplay = "standing"
 frame_progress = 0.04873133
 
-[node name="SpatialAudioPlayer3D" parent="." unique_id=1690498887 instance=ExtResource("5_h60nn")]
+[node name="SpatialAudioClient3d" parent="." unique_id=1018757877 instance=ExtResource("5_h60nn")]
 
 [editable path="Head/Offset/Camera3D/AimController"]

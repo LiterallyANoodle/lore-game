@@ -1,3 +1,4 @@
+@icon("res://addons/at-icons/node/speaker.svg")
 extends Node
 
 class AudioFollower:
