@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://wsgsaxoi1xlh"]
 
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_2q6dc"]
+[ext_resource type="Texture2D" uid="uid://dauongqa2tbj2" path="res://assets/cloudsdale.webp" id="1_b121j"]
 [ext_resource type="Texture2D" uid="uid://c6gp05opwq2b1" path="res://assets/grass.png" id="1_mx8sn"]
 [ext_resource type="Texture2D" uid="uid://ck5y2irikrvem" path="res://assets/pink.png" id="2_klq6b"]
 [ext_resource type="Texture2D" uid="uid://xqiyrhnqsg3d" path="res://assets/wall.png" id="2_ppgk2"]
@@ -8,12 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://dxvrgecxt571y" path="res://assets/wood.png" id="3_2r41h"]
 [ext_resource type="CompressedTexture3D" uid="uid://c8eto0pruvvvr" path="res://resources/level.GPUParticlesCollisionSDF3D_data.exr" id="4_mx8sn"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2q6dc"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_yrjyd"]
+panorama = ExtResource("1_b121j")
 
 [sub_resource type="Sky" id="Sky_w7c3h"]
-sky_material = SubResource("ProceduralSkyMaterial_2q6dc")
+sky_material = SubResource("PanoramaSkyMaterial_yrjyd")
 
 [sub_resource type="Environment" id="Environment_w8frs"]
 background_mode = 2
