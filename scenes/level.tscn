@@ -2,8 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_2q6dc"]
 [ext_resource type="Texture2D" uid="uid://c6gp05opwq2b1" path="res://assets/grass.png" id="1_mx8sn"]
+[ext_resource type="Texture2D" uid="uid://ck5y2irikrvem" path="res://assets/pink.png" id="2_klq6b"]
 [ext_resource type="Texture2D" uid="uid://xqiyrhnqsg3d" path="res://assets/wall.png" id="2_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://db4oyokn7e40r" path="res://scenes/enemy_spawner.tscn" id="2_w7c3h"]
+[ext_resource type="Texture2D" uid="uid://dxvrgecxt571y" path="res://assets/wood.png" id="3_2r41h"]
 [ext_resource type="CompressedTexture3D" uid="uid://c8eto0pruvvvr" path="res://resources/level.GPUParticlesCollisionSDF3D_data.exr" id="4_mx8sn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2q6dc"]
@@ -28,10 +30,111 @@ uv1_scale = Vector3(0.85, 0.85, 0.85)
 uv1_triplanar = true
 texture_filter = 0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2r41h"]
+load_path = "res://.godot/imported/wall.png-6b1d64fa3ea5498e75707962a9c3b56c.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b121j"]
+albedo_texture = SubResource("CompressedTexture2D_2r41h")
+uv1_scale = Vector3(0.12, 0.12, 0.12)
+uv1_offset = Vector3(-0.025, -0.05, 0)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8c41q"]
+albedo_texture = ExtResource("2_klq6b")
+uv1_scale = Vector3(0.12, 0.12, 0.12)
+uv1_offset = Vector3(-0.025, -0.05, 0)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_klq6b"]
+load_path = "res://.godot/imported/wood.png-3f3ec655eb8f21d9fa2e2a42778fe351.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_olg7q"]
+albedo_texture = SubResource("CompressedTexture2D_klq6b")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t1rx8"]
+albedo_texture = SubResource("CompressedTexture2D_klq6b")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8iemx"]
+albedo_texture = SubResource("CompressedTexture2D_klq6b")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_64w2a"]
+albedo_texture = SubResource("CompressedTexture2D_klq6b")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2r41h"]
 albedo_texture = ExtResource("2_ppgk2")
 uv1_scale = Vector3(0.1, 0.1, 0.1)
 uv1_offset = Vector3(0, -0.05, 0)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b121j"]
+load_path = "res://.godot/imported/wood.png-3f3ec655eb8f21d9fa2e2a42778fe351.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fpun6"]
+albedo_texture = SubResource("CompressedTexture2D_b121j")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wc255"]
+albedo_texture = SubResource("CompressedTexture2D_b121j")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_arp2o"]
+albedo_texture = SubResource("CompressedTexture2D_b121j")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ux5qa"]
+albedo_texture = SubResource("CompressedTexture2D_b121j")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_82cfe"]
+albedo_texture = SubResource("CompressedTexture2D_b121j")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gunhw"]
+albedo_texture = SubResource("CompressedTexture2D_b121j")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8gofh"]
+albedo_texture = SubResource("CompressedTexture2D_b121j")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h6wmr"]
+albedo_texture = SubResource("CompressedTexture2D_b121j")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_klq6b"]
+albedo_texture = ExtResource("3_2r41h")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 texture_filter = 0
 
@@ -55,24 +158,34 @@ size = Vector3(50, 1, 50)
 material = SubResource("StandardMaterial3D_w8frs")
 
 [node name="Center" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=371906182]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-size = Vector3(8, 9, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.711426, 0)
+size = Vector3(8, 8.5, 8)
+material = SubResource("StandardMaterial3D_b121j")
+
+[node name="Top" type="CSGBox3D" parent="NavigationRegion3D/Floor/Center" unique_id=1586070036]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 0)
+size = Vector3(8, 0.5, 8)
+material = SubResource("StandardMaterial3D_8c41q")
 
 [node name="Pillar 1" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=598768555]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 3, 15)
 size = Vector3(2, 5, 2)
+material = SubResource("StandardMaterial3D_olg7q")
 
 [node name="Pillar 2" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=2014572097]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 3, 15)
 size = Vector3(2, 5, 2)
+material = SubResource("StandardMaterial3D_t1rx8")
 
 [node name="Pillar 3" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=1128838016]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 3, -15)
 size = Vector3(2, 5, 2)
+material = SubResource("StandardMaterial3D_8iemx")
 
 [node name="Pillar 4" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=1527501296]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 3, -15)
 size = Vector3(2, 5, 2)
+material = SubResource("StandardMaterial3D_64w2a")
 
 [node name="Wall 1" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=1315812224]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5, 0, 0)
@@ -98,87 +211,105 @@ material = SubResource("StandardMaterial3D_2r41h")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3.5, 26)
 operation = 2
 size = Vector3(2.5, 6, 6)
+material = SubResource("StandardMaterial3D_fpun6")
 
 [node name="SpawnHole 2" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=1573208567]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3.5, 26)
 operation = 2
 size = Vector3(2.5, 6, 6)
+material = SubResource("StandardMaterial3D_wc255")
 
 [node name="SpawnHole 3" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=1324443495]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 3.5, 8)
 operation = 2
 size = Vector3(6, 6, 2.5)
+material = SubResource("StandardMaterial3D_arp2o")
 
 [node name="SpawnHole 4" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=121841206]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 3.5, -8)
 operation = 2
 size = Vector3(6, 6, 2.5)
+material = SubResource("StandardMaterial3D_ux5qa")
 
 [node name="SpawnHole 5" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=1310082356]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3.5, -26)
 operation = 2
 size = Vector3(2.5, 6, 6)
+material = SubResource("StandardMaterial3D_82cfe")
 
 [node name="SpawnHole 6" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=1600955787]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3.5, -26)
 operation = 2
 size = Vector3(2.5, 6, 6)
+material = SubResource("StandardMaterial3D_gunhw")
 
 [node name="SpawnHole 7" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=1913742623]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 3.5, 8)
 operation = 2
 size = Vector3(6, 6, 2.5)
+material = SubResource("StandardMaterial3D_8gofh")
 
 [node name="SpawnHole 8" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=770277929]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 3.5, -8)
 operation = 2
 size = Vector3(6, 6, 2.5)
+material = SubResource("StandardMaterial3D_h6wmr")
 
 [node name="Ramp 1" type="CSGPolygon3D" parent="NavigationRegion3D/Floor" unique_id=1854936042]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 7)
 polygon = PackedVector2Array(0, 0, 4, 3, -4, 0)
 depth = 3.0
+material = SubResource("StandardMaterial3D_klq6b")
 
 [node name="Ramp 2" type="CSGPolygon3D" parent="NavigationRegion3D/Floor" unique_id=893781205]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7, 3.5, 0)
 polygon = PackedVector2Array(0, 0, 4, 3, -4, 0)
 depth = 3.0
+material = SubResource("StandardMaterial3D_klq6b")
 
 [node name="Ramp 3" type="CSGPolygon3D" parent="NavigationRegion3D/Floor" unique_id=372711921]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 6.5, -7)
 polygon = PackedVector2Array(0, 0, 4, 3, -4, 0)
 depth = 3.0
+material = SubResource("StandardMaterial3D_klq6b")
 
 [node name="Landing 1" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=1376050740]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.625, 3.375, 5.625)
 size = Vector3(3.25, 0.75, 3.25)
+material = SubResource("StandardMaterial3D_klq6b")
 
 [node name="Walk Area" type="CSGBox3D" parent="NavigationRegion3D/Floor/Landing 1" unique_id=810286367]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125, 0.25, -0.125)
 operation = 2
 size = Vector3(3, 0.25, 3)
+material = SubResource("StandardMaterial3D_klq6b")
 
 [node name="Landing 2" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=1355606884]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.009033, 6.5062866, -4.988098)
 size = Vector3(4.5238037, 1.0125732, 4.4819336)
+material = SubResource("StandardMaterial3D_klq6b")
 
 [node name="Walk Area" type="CSGBox3D" parent="NavigationRegion3D/Floor/Landing 2" unique_id=575399360]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.57073975, 0.2817688, -1.135248)
 operation = 2
 size = Vector3(5, 0.56243896, 6.2060547)
+material = SubResource("StandardMaterial3D_klq6b")
 
 [node name="Ramp Walk" type="CSGBox3D" parent="NavigationRegion3D/Floor/Landing 2" unique_id=1042138179]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9985011, -0.57910156, 0)
 operation = 2
 size = Vector3(2.0135498, 2.1582031, 3)
+material = SubResource("StandardMaterial3D_klq6b")
 
 [node name="Landing 3" type="CSGBox3D" parent="NavigationRegion3D/Floor" unique_id=322226075]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 9.25, -1.5)
 size = Vector3(3, 0.5, 11)
+material = SubResource("StandardMaterial3D_klq6b")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/Floor/Landing 3" unique_id=112229312]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9827423, 0.16363525, -0.0027618408)
 size = Vector3(1, 0.8673096, 10.99295)
+material = SubResource("StandardMaterial3D_klq6b")
 
 [node name="ProtoController" parent="." unique_id=1379430219 instance=ExtResource("1_2q6dc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4046764, -9.536743e-07, 10.390377)
