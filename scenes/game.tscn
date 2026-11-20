@@ -4,5 +4,5 @@
 
 [node name="Game" type="Node" unique_id=1226698980]
 script = ExtResource("1_uwrxv")
-player_max_health = 5
 godmode = true
+player_max_health = 5

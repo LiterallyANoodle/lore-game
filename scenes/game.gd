@@ -1,9 +1,6 @@
 extends Node
 
-@export var score_goal: int = 100
-@export var player_max_health: int = 10
 @export var player_score: int = 0
-@export var enemy_spawn_time_seconds: float = 5
 @export var godmode: bool = false
 @export var low_health_phrases: Array[String] = [ 
 	"OH FUCK", 
@@ -20,6 +17,11 @@ extends Node
 	"OH GOD OH FUCK",
 	"TRY NOT GETTING HIT"
 ]
+@export_group("Difficulty")
+@export var score_goal: int = 100
+@export var player_max_health: int = 10
+@export var enemy_spawn_time_seconds: float = 5
+@export var enemy_spawners: Array[EnemySpawner] = []
 
 @onready var enemy_spawn_time_remaining: float = 0
 @onready var player_health_remaining: int = player_max_health
